@@ -1,12 +1,17 @@
 package main
 
 import (
+	// built-in
 	"fmt"
 	"log"
 	"os"
 
+	// web framework
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+
+	// local packages
+	db "ttcertman/src/platform/database"
 )
 
 // Env variables config
@@ -30,6 +35,12 @@ func LoadEnv() {
 		log.Fatal("Error loading .env file")
 	}
 
+	// get current directory
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// get env variables
 	APP_PORT = os.Getenv("APP_PORT")
 	DBCONNSTR = os.Getenv("DBCONNSTR")
@@ -41,6 +52,11 @@ func LoadEnv() {
 	S3_ACCESS_KEY = os.Getenv("S3_ACCESS_KEY")
 	S3_SECRET_KEY = os.Getenv("S3_SECRET_KEY")
 	S3_ENDPOINT = os.Getenv("S3_ENDPOINT")
+
+	// init database
+	db.InitDatabaseConnection(dir + "/" + DBCONNSTR)
+	// init migrations
+	db.InitMigrations()
 }
 
 func run() error {

@@ -51,10 +51,6 @@ func Routes(r *gin.Engine) {
 
 	// GET /scans - get all scans
 	r.GET("/scans", controllers.GetScansHandler)
-	// POST /scans - create scan
-	r.POST("/scans", controllers.CreateScanHandler)
-	// PUT /scans/:id - update scan
-	r.PUT("/scans/:id", controllers.UpdateScanHandler)
 	// DELETE /scans/:id - delete scan
 	r.DELETE("/scans/:id", controllers.DeleteScanHandler)
 

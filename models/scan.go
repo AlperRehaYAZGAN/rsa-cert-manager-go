@@ -6,5 +6,8 @@ import (
 
 type Scan struct {
 	gorm.Model
-	Key string `gorm:"type:varchar(100);unique_index"`
+	Name string `gorm:"type:varchar(64);not null;unique"`
+	Key  string `gorm:"type:varchar(64);not null;unique"`
+	// value is jsonb postgresql type
+	Value string `gorm:"type:jsonb"`
 }
