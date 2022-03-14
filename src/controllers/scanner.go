@@ -15,7 +15,10 @@ func ScanSSLHandler(c *gin.Context) {
 	url := c.DefaultQuery("url", "google.com:443")
 	if url == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "url is required",
+			"status":  false,
+			"intent":  "ttrn:::api/scan/ssl",
+			"type":    "scan-ssl",
+			"message": "URL is required",
 		})
 		return
 	}
@@ -23,14 +26,19 @@ func ScanSSLHandler(c *gin.Context) {
 	certs, err := scanner.GetCertificates(url)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
+			"status":  false,
+			"intent":  "ttrn:::api/scan/ssl",
+			"type":    "scan-ssl",
+			"message": err.Error(),
 		})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"status":  true,
-		"message": "scan ssl certificate",
+		"intent":  "ttrn:::api/scan/ssl",
+		"type":    "scan-ssl",
+		"message": "SSL certificate scanned successfully",
 		"certs":   certs,
 	})
 	return

@@ -14,7 +14,8 @@ import (
 func GetResourcesHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/resources/get",
+		"intent": "ttrn:::api/resources/get",
+		"type":   "get-resources",
 		"resources": []string{
 			"/api/services/generate/",
 		},
@@ -25,7 +26,8 @@ func GetResourcesHandler(ctx *gin.Context) {
 func CreateResourceHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/resources/create",
+		"intent": "ttrn:::api/resources/create",
+		"type":   "create-resource",
 		"resource": []string{
 			"/api/resources/resources",
 		},
@@ -36,7 +38,8 @@ func CreateResourceHandler(ctx *gin.Context) {
 func UpdateResourceHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/resources/update",
+		"intent": "ttrn:::api/resources/update",
+		"type":   "update-resource",
 		"resource": []string{
 			"/api/resources/platforms",
 		},
@@ -47,7 +50,8 @@ func UpdateResourceHandler(ctx *gin.Context) {
 func DeleteResourceHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/resources/delete",
+		"intent": "ttrn:::api/resources/delete",
+		"type":   "delete-resource",
 		"resource": []string{
 			"/api/resources/paas",
 		},

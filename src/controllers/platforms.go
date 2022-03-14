@@ -14,7 +14,8 @@ import (
 func GetPlatformsHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/platforms/get",
+		"intent": "ttrn:::api/platforms/get",
+		"type":   "get-platforms",
 		"platforms": []string{
 			"/api/services/generate/",
 		},
@@ -25,7 +26,8 @@ func GetPlatformsHandler(ctx *gin.Context) {
 func CreatePlatformHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/platforms/create",
+		"intent": "ttrn:::api/platforms/create",
+		"type":   "create-platform",
 		"platform": []string{
 			"/api/services/platforms",
 		},
@@ -36,7 +38,8 @@ func CreatePlatformHandler(ctx *gin.Context) {
 func UpdatePlatformHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/platforms/update",
+		"intent": "ttrn:::api/platforms/update",
+		"type":   "update-platform",
 		"platform": []string{
 			"/api/services/platforms",
 		},
@@ -47,7 +50,8 @@ func UpdatePlatformHandler(ctx *gin.Context) {
 func DeletePlatformHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/services/delete",
+		"intent": "ttrn:::api/platforms/delete",
+		"type":   "delete-platform",
 		"platform": []string{
 			"/api/platforms/paas",
 		},

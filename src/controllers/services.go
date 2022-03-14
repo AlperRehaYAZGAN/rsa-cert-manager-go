@@ -14,7 +14,8 @@ import (
 func GetServicesHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/services/get",
+		"intent": "ttrn:::api/services/get",
+		"type":   "get-services",
 		"services": []string{
 			"/api/services/generate/ssh",
 		},
@@ -25,7 +26,8 @@ func GetServicesHandler(ctx *gin.Context) {
 func CreateServiceHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/services/create",
+		"intent": "ttrn:::api/services/create",
+		"type":   "create-service",
 		"service": []string{
 			"/api/services/service",
 		},
@@ -36,7 +38,8 @@ func CreateServiceHandler(ctx *gin.Context) {
 func UpdateServiceHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/services/create",
+		"intent": "ttrn:::api/services/update",
+		"type":   "update-service",
 		"service": []string{
 			"/api/services/service",
 		},
@@ -47,7 +50,8 @@ func UpdateServiceHandler(ctx *gin.Context) {
 func DeleteServiceHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/services/create",
+		"intent": "ttrn:::api/services/delete",
+		"type":   "delete-service",
 		"service": []string{
 			"/api/services/service",
 		},

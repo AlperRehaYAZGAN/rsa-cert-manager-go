@@ -14,7 +14,8 @@ import (
 func GetScansHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/scans/get",
+		"intent": "ttrn:::api/scans/get",
+		"type":   "get-scans",
 		"scans": []string{
 			"/api/scans/generate/",
 		},
@@ -25,7 +26,8 @@ func GetScansHandler(ctx *gin.Context) {
 func CreateScanHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/scans/create",
+		"intent": "ttrn:::api/scans/create",
+		"type":   "create-scan",
 		"scan": []string{
 			"/api/scan/platforms",
 		},
@@ -36,7 +38,8 @@ func CreateScanHandler(ctx *gin.Context) {
 func UpdateScanHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/scans/update",
+		"intent": "ttrn:::api/scans/update",
+		"type":   "update-scan",
 		"scan": []string{
 			"/api/scan/platforms",
 		},
@@ -47,7 +50,8 @@ func UpdateScanHandler(ctx *gin.Context) {
 func DeleteScanHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"type":   "ttrn:::api/scans/delete",
+		"intent": "ttrn:::api/scans/delete",
+		"type":   "delete-scan",
 		"scan": []string{
 			"/api/scans/paas",
 		},
