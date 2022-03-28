@@ -1,0 +1,66 @@
+# simple docker-compose.yml file for nats, redis, postgres and minio
+version: '3'
+services:
+  # postgresql service
+  postgresqlapp:
+    image: postgres:9.6.24-alpine3.15
+    networks:
+      - alyafnnet
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=alyafnuser
+      - POSTGRES_PASSWORD=alyafnuserpassword
+      - POSTGRES_DB=alyagofndev
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    restart: always
+    healthcheck:
+      test: pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+      interval: 10s
+      timeout: 2s
+      retries: 10
+  # minio s3 service
+  minioapp:
+    image: rancher/minio-minio:RELEASE.2020-07-13T18-09-56Z
+    networks:
+      - alyafnnet
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./volumes/minio:/data
+    environment:
+      - MINIO_ACCESS_KEY=minio
+      - MINIO_SECRET_KEY=minio123
+      - MINIO_BROWSER=on
+    restart: always
+    depends_on:
+      - nocoapp
+    # pass server /data to minio
+    command: server /data
+  # nocodb service
+  nocoapp:
+    image: nocodb/nocodb:0.84.15
+    networks:
+      - alyafnnet
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./volumes/nocodb:/usr/app/data/
+    environment:
+      - NC_DB=pg://postgresqlapp:5432?u=alyafnuser&p=alyafnuserpassword&d=alyagofndev
+      - NC_AUTH_JWT_SECRET=569a1821-0a93-45e8-87ab-eb857f20a010
+    restart: always
+    depends_on:
+      postgresqlapp:
+        condition: service_healthy
+    # pass server /data to minio
+    command: server /data
+
+
+# network: alyafnnet
+networks:
+  alyafnnet:
+    name: alyafnnet
+    driver: bridge
