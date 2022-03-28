@@ -1,6 +1,9 @@
 ### RSA Cert Manager Tool
 This is the project aiming to create a SSL and RSA cert manager for common use case like check SSL expire date, create self signed certificates for development or scan your cluster for check certificate lifetime.
 
+# Desired Architecture 
+![Architecture](./project-docs/certman-schema.jpg)
+
 # Usage
 - git clone https://github.com/AlperRehaYAZGAN/rsa-cert-manager-go 
 - cd rsa-cert-manager-go
