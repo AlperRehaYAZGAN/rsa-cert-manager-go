@@ -6,7 +6,6 @@ import (
 )
 
 func InitSqliteDbConnection(dbConnString string) (db *gorm.DB, err error) {
-	var dbErr error
-	db, dbErr = gorm.Open(sqlite.Open(dbConnString), &gorm.Config{})
+	db, dbErr := gorm.Open(sqlite.Open(dbConnString), &gorm.Config{})
 	return db, dbErr
 }

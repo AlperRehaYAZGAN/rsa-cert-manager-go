@@ -13,6 +13,9 @@ var connErr error
 
 func InitDatabaseConnection(dbConnString string) {
 	dbApp, connErr = InitSqliteDbConnection(dbConnString)
+	if connErr != nil {
+		panic(connErr)
+	}
 }
 
 func InitMigrations() {

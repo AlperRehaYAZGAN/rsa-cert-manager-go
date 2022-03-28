@@ -6,7 +6,6 @@ import (
 )
 
 func InitPostgresDbConnection(dbConnString string) (db *gorm.DB, err error) {
-	var dbErr error
-	db, dbErr = gorm.Open(postgres.Open(dbConnString), &gorm.Config{})
+	db, dbErr := gorm.Open(postgres.Open(dbConnString), &gorm.Config{})
 	return db, dbErr
 }

@@ -11,28 +11,32 @@ import (
 
 	// local packages
 	config "ttcertman/config"
+	mq "ttcertman/src/platform/brokers"
 	db "ttcertman/src/platform/database"
 )
 
-func InitEnv() {
+func InitEnv(dir string) {
+	// load env variables from
+	config.LoadEnv(dir)
+}
+
+func run() error {
 	// get current directory
 	dir, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// load env variables from
-	config.LoadEnv(dir)
+	// Init environment variables
+	InitEnv(dir)
 
 	// init database
 	db.InitDatabaseConnection(dir + "/" + config.DBCONNSTR)
 	// init migrations
 	db.InitMigrations()
-}
 
-func run() error {
-	// Init environment variables
-	InitEnv()
+	// init mq connection for queue
+	mq.InitMQConnection(config.MQCONNSTR)
 
 	// Create a new gin router
 	r := gin.Default()

@@ -11,8 +11,8 @@ import (
 var (
 	APP_PORT      = os.Getenv("APP_PORT")
 	DBCONNSTR     = os.Getenv("DBCONNSTR")
-	NATS_URL      = os.Getenv("NATS_URL")
-	REDISCONNSTR  = os.Getenv("REDISCONNSTR")
+	MQCONNSTR     = os.Getenv("MQCONNSTR")
+	CACHECONNSTR  = os.Getenv("CACHECONNSTR")
 	S3_REGION     = os.Getenv("S3_REGION")
 	S3_BUCKET     = os.Getenv("S3_BUCKET")
 	S3_ACCESS_KEY = os.Getenv("S3_ACCESS_KEY")
@@ -30,8 +30,8 @@ func LoadEnv(dirname string) {
 	// get env variables
 	APP_PORT = os.Getenv("APP_PORT")
 	DBCONNSTR = os.Getenv("DBCONNSTR")
-	NATS_URL = os.Getenv("NATS_URL")
-	REDISCONNSTR = os.Getenv("REDISCONNSTR")
+	MQCONNSTR = os.Getenv("MQCONNSTR")
+	CACHECONNSTR = os.Getenv("CACHECONNSTR")
 	S3_PUBLIC = os.Getenv("S3_BUCKET")
 	S3_REGION = os.Getenv("S3_REGION")
 	S3_BUCKET = os.Getenv("S3_BUCKET")

@@ -1,4 +1,4 @@
-# simple docker-compose.yml file for nats, redis, postgres and minio
+# simple docker-compose.yml file for nats, redis, postgres and minio and rabbitmq (rabbitmq:3.10.0-rc.1-management-alpine)
 version: '3'
 services:
   # postgresql service
@@ -57,6 +57,22 @@ services:
         condition: service_healthy
     # pass server /data to minio
     command: server /data
+  # rabbitmq service
+  rabbitmqapp:
+    image: rabbitmq:3.10.0-rc.1-management-alpine
+    networks:
+      - alyafnnet
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./volumes/rabbitmq:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+      - RABBITMQ_DEFAULT_VHOST=rabbitmq
+    depends_on:
+      - postgresqlapp
 
 
 # network: alyafnnet
